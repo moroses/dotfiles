@@ -5,7 +5,8 @@ function loadFolder() {
         cd $folder;
         [ -e 'pre.sh' ] && ./pre.sh;
         for lnk in $( ls *.symb ); do
-                ln -s $lnk ~/.${lnk%%.symb};
+		flnk=`readlink -f $lnk`;
+                ln -s $flnk ~/.${lnk%%.symb};
         done;
         [ -e 'post.sh' ] && ./post.sh;
         cd ..;
