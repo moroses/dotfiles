@@ -1,0 +1,64 @@
+# Took some inspiration from @spicycode .tmux.conf
+
+# Base index 1
+set -g base-index 1
+
+# I like to decide on the window name
+set-window-option -g automatic-rename off
+set-option -g set-titles on
+
+# Color terminal + vi mode
+set -g default-terminal screen-256color
+set -g status-keys vi
+set -g history-limit 10000
+
+set -g mode-keys vi
+set -g monitor-activity on
+
+# Vi-like split commands
+bind-key v split-window -h
+bind-key s split-window -v
+
+# Vi-like resize commands
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key H resize-pane -L 5
+bind-key L resize-pane -R 5
+
+# Vi-like resize commands
+bind-key M-j resize-pane -D
+bind-key M-k resize-pane -U
+bind-key M-h resize-pane -L
+bind-key M-l resize-pane -R
+
+# Vi-like move commands
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Vi-like move commands with no prefix
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# Move windows with shift arrows
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+set -sg escape-time 0
+
+# Reload conf
+bind r source-file ~/.tmux.conf
+
+# Initial theme
+set -g status-bg black
+set -g status-fg white
+set -g window-status-current-bg white
+set -g window-status-current-fg black
+set -g window-status-current-attr bold
+set -g status-interval 60
+set -g status-left-length 30
+set -g status-left '#[fg=green](#S) #(whoami)'
+set -g status-right '#[fg=white]%H:%M#[default]'
