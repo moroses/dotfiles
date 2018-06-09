@@ -2,11 +2,11 @@
 --------------
 
 ## Scripts
-- [] install
-- [] ssh connection manager
-- [] etc
+- [ ] install
+- [ ] ssh connection manager
+- [ ] etc
 ## .Files
 - [x] vimrc
 - [x] tmux.conf
-- [] ranger
-- [] bash
+- [ ] ranger
+- [ ] bash
