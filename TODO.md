@@ -4,6 +4,7 @@
 ## Scripts
 - [ ] install
 - [ ] ssh connection manager
+- [ ] tmux "connection" manager
 - [ ] etc
 ## .Files
 - [x] vimrc
