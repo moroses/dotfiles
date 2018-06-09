@@ -1,7 +1,12 @@
 # Took some inspiration from @spicycode .tmux.conf
+# Took some style from @liorrozen
+
+set -q -g status-utf8 on
+setw -q -g utf8 on
 
 # Base index 1
 set -g base-index 1
+set -g pane-base-index 1
 
 # I like to decide on the window name
 set-window-option -g automatic-rename off
@@ -50,15 +55,37 @@ bind -n S-Right next-window
 set -sg escape-time 0
 
 # Reload conf
-bind r source-file ~/.tmux.conf
+bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
+bind e new-window -n '.tmux.conf' "vim ~/.tmux.conf && tmux source ~/.tmux.conf && tmux display \"~/.tmux.conf sourced\""
+
+bind X confirm-before -p "kill-session? (y/n)" kill-session
 
 # Initial theme
-set -g status-bg black
-set -g status-fg white
-set -g window-status-current-bg white
-set -g window-status-current-fg black
-set -g window-status-current-attr bold
 set -g status-interval 60
-set -g status-left-length 30
-set -g status-left '#[fg=green](#S) #(whoami)'
-set -g status-right '#[fg=white]%H:%M#[default]'
+setw -g mode-bg yellow
+setw -g mode-fg black
+set -g status-bg 'colour235'
+set -g message-command-fg 'colour252'
+set -g status-justify 'centre'
+set -g status-left-length '100'
+set -g status 'on'
+set -g pane-active-border-fg 'colour252'
+set -g message-bg 'colour238'
+set -g status-right-length '100'
+set -g status-right-attr 'none'
+set -g message-fg 'colour252'
+set -g message-command-bg 'colour238'
+set -g status-attr 'none'
+set -g pane-border-fg 'colour238'
+set -g status-left-attr 'none'
+set -g window-status-attr 'none'
+set -g window-status-activity-bg 'colour235'
+set -g window-status-activity-attr 'none'
+set -g window-status-activity-fg 'colour252'
+set -g window-status-bg 'colour235'
+
+set -g status-left '#[fg=colour232,bg=colour192] #S #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>'
+set -g status-right '#[fg=colour238,bg=colour235]<#[fg=colour192,bg=colour238] %Y-%m-%d  %H:%M #[fg=color192,bg=colour238]<#[fg=colour=232,bg=colour=192] #h #{?client_prefix,#[reverse]BIND#[noreverse],}'
+set -g window-status-format '#[fg=colour243,bg=colour235] (#I) #[fg=colour243,bg=colour235] #W '
+set -g window-status-current-format '#[fg=colour243,bg=colour235] (#I) #W '
+
