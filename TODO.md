@@ -1,5 +1,5 @@
 # Future plans
---------------
+--------
 
 ## Scripts
 - [ ] install
@@ -10,3 +10,5 @@
 - [x] tmux.conf
 - [ ] ranger
 - [ ] bash
+## Further additions
+- [ ] Various LaTeX snippets for generating tikz "animations".
