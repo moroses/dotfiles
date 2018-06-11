@@ -19,9 +19,14 @@ noremap <DOWN> :echo "Nope."
 noremap <LEFT> :echo "Nope."
 noremap <RIGHT> :echo "Nope."
 
-exe "set <M-R>=\er"
+noremap <UP> <Nop>
+noremap <DOWN> <Nop>
+noremap <LEFT> <Nop>
+noremap <RIGHT> <Nop>
 
-noremap <M-r> :so ~/.vimrc<CR>:echo "Sourced ~/.vimrc"
+exe "set <M-r>=\er"
+
+noremap <M-r> :so ~/.vimrc<CR>:echo "Sourced ~/.vimrc"<CR>
 
 set encoding=utf-8 " Necessary to show Unicode glyphs
 let g:netrw_liststyle=3       " Explore set to tree view
@@ -93,28 +98,11 @@ filetype plugin indent on
 
 " Mappings
 " ========
-" LaTeX compile
-" =============
-imap <C-L> <ESC> :w:!pdflatex % i
 
-" LaTeX shortcuts
+" LaTeX file load
 " ===============
 
-autocmd FileType tex set relativenumber
-autocmd FileType tex inoremap <leader><SPACE> <ESC>/<++><CR>"_c4l
-autocmd FileType tex inoremap ;a \begin{align}<CR><CR>\end{align}<CR><++><ESC>2ki
-autocmd FileType tex inoremap ;A \begin{align*}<CR><CR>\end{align*}<CR><++><ESC>2ki
-autocmd FileType tex inoremap ;sec \section{}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;ssec \subsection{}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;l \label{}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;ls \label{sec:}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;le \label{eq:}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;lf \label{fig:}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;lt \label{tab:}<CR><++><ESC>kf}i
-autocmd FileType tex inoremap ;b \begin{block}{}<CR><++><CR>\end{block}<CR><++><ESC>3k^f}f}i
-autocmd FileType tex inoremap ;ba \begin{alertblock}{}<CR><++><CR>\end{alertblock}<CR><++><ESC>3k^f}f}i
-autocmd FileType tex inoremap ;be \begin{exampleblock}{}<CR><++><CR>\end{exampleblock}<CR><++><ESC>3k^f}f}i
-
+so ~/dotfiles/vim/latex.vim
 
 " Tab in normal mode toggles file browsing
 nmap <TAB> :40Lexplore <CR>
