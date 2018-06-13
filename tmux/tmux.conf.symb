@@ -4,9 +4,14 @@
 set -q -g status-utf8 on
 setw -q -g utf8 on
 
+set -g display-time 4000 # Messages stay for 4 min.
+
 # Base index 1
 set -g base-index 1
 set -g pane-base-index 1
+
+set -g prefix2 c-a
+bind c-a send-prefix -2
 
 # I like to decide on the window name
 set-window-option -g automatic-rename off
@@ -19,6 +24,7 @@ set -g history-limit 10000
 
 set -g mode-keys vi
 set -g monitor-activity on
+set -g visual-activity on
 
 # Vi-like split commands
 bind-key v split-window -h
