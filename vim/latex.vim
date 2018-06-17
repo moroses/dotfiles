@@ -4,7 +4,8 @@
 
 " LaTeX compile
 " =============
-imap <C-L> <ESC> :w:!pdflatex % i
+autocmd FileType tex imap <C-L> <ESC> :w:!pdflatex % i
+autocmd FileType tex let @l=':w:!pdflatex %'
 
 " LaTeX shortcuts
 " ===============
@@ -23,6 +24,10 @@ autocmd FileType tex inoremap ;lt \label{tab:}<CR><++><ESC>kf}i
 autocmd FileType tex inoremap ;b \begin{block}{}<CR><++><CR>\end{block}<CR><++><ESC>3k^f}f}i
 autocmd FileType tex inoremap ;ba \begin{alertblock}{}<CR><++><CR>\end{alertblock}<CR><++><ESC>3k^f}f}i
 autocmd FileType tex inoremap ;be \begin{exampleblock}{}<CR><++><CR>\end{exampleblock}<CR><++><ESC>3k^f}f}i
+
+autocmd FileType tex inoremap ;it \item<CR><++><ESC>k0fmA<SPACE>
+autocmd FileType tex inoremap ;enum \begin{enumerate}<CR><CR>\end{enumerate}<CR><++><ESC>kki
+autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<++><ESC>kki
 
 " LaTeX Greek letters and different characters
 autocmd FileType tex inoremap `al \alpha

@@ -77,6 +77,24 @@ function warn() {
 	nPrint --sep '\033[00;36mWARN\033[0m' "${@}";
 }
 
+# getSelection()
+# 1 - value to search
+# ...- list to search in
+# return - matching value from list or ''
+
+function getSelection() {
+	local val="${1}";
+	shift;
+	for cmd in "${@}"; do
+		if [ "${cmd}" = "${val}" ]; then
+			echo "${cmd}"
+			return 0;
+		fi
+	done;
+	echo '';
+	return 1;
+}
+
 # Every handle with a postfix of .symb will be linked to the home directory with a ``.'' prefix.
 # Every handle with a postfix of .config will be linked to the home directory .config folder.
 # bin/ directory will be added to the path.
@@ -92,6 +110,44 @@ function main() {
 		main_help
 		return 0;
 	fi
+
+	dotfiles='~/dotfiles/';
+	target='~/';
+	dummy=1;
+
+	while [ "${1::2}" = "--" ]; do
+		case "${1}" in
+			'--dotfiles-src')
+				dotfiles="${2}";
+				shift
+				;;
+			'--target')
+				target="${2}";
+				shift
+				;;
+			'--dummy')
+				dummy="${2}";
+				shift
+				;;
+			*)
+				warn "'${1} ${2}' is an unknown option."
+				shift
+				;;
+		esac;
+		shift
+	done;
+
+	### TODO:
+	### Code to verify approved command and execution
+
+	msg="\
+Current system state:\n\
+dotfiles-src=${dotfiles}\n\
+target=${target}\n\
+dummy=${dummy}\
+";
+notify "${msg}";
+
 	return 0;
 }
 
@@ -132,7 +188,11 @@ ${0} [COMMAND] --help\n\
 #COMMANDS+=('link');
 #COMMANDS+=('delete');
 
-main "${@}" || exit 1;
+#main "${@}" || exit 1;
+
+test="$( getSelection "YoYo" "Test" "Run_me" "Yo" "YoYo" )";
+notify "${?}\n${test}\nThis"
+notify "What?"
 
 #for cmd in {notify,ask,warn,success,fail}; do
 #	$cmd "Line 1.\nLine 2.";
