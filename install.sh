@@ -22,6 +22,9 @@ function nPrint() {
 				ind="${2}";
 				shift
 				;;
+			'--err')
+				err=1;
+				;;
 			*)
 				echo 'WTF?!?';
 				exit 5
@@ -47,7 +50,11 @@ function nPrint() {
 #			if [ $o = '' ]; then
 #				break;
 #			fi
-			printf "\r [${sep}] ${indt} ${o}\n";
+			if [ "${err}" ]; then
+				printf "\r [${sep}] ${indt} ${o}\n" >&2;
+			else
+				printf "\r [${sep}] ${indt} ${o}\n";
+			fi
 			l=${l#*\\n};
 		done;
 	done;
@@ -64,9 +71,7 @@ function ask() {
 }
 
 function fail() {
-	nPrint --sep '\033[00;31mFAIL\033[m' "${@}";
-        echo '';
-        exit;
+	nPrint --sep '\033[00;31mFAIL\033[m' --err "${@}";
 }
 
 function success() {
@@ -93,6 +98,24 @@ function getSelection() {
 	done;
 	echo '';
 	return 1;
+}
+
+# nonEmpty()
+# 1 - Area of ``error''
+# 2 - value's name
+# 3 - value
+# return - value or output an error message and exit
+
+function nonEmpty() {
+	func="${1}";
+	name="${2}";
+	value="${3}";
+	if [ -z "${value}" ]; then
+		fail "function ${func} received an empty value for ${name}";
+		return 1;
+	fi
+	echo "${value}";
+#	return 0;
 }
 
 # Every handle with a postfix of .symb will be linked to the home directory with a ``.'' prefix.
@@ -140,6 +163,19 @@ function main() {
 	### TODO:
 	### Code to verify approved command and execution
 
+	cmd="$( getSelection "${1}" "${COMMANDS[@]}" )";
+	shift;
+
+	test=$(nonEmpty 'main' 'command' $cmd) || return 1;
+
+	if [ "${1}" = "--help" ]; then
+		"${cmd}_help";
+	else
+		$cmd "${@}";
+	fi
+
+	notify "Current function: ${cmd}"
+
 	msg="\
 Current system state:\n\
 dotfiles-src=${dotfiles}\n\
@@ -170,8 +206,9 @@ Commands:\n\
 ";
 
 	for command in "${COMMANDS[@]}"; do
-		cmds+="${command}:";
+		cmds+="${command}: ";
 		cmds+=$("${command}_help" --one-line);
+		cmds+="\n";
 	done;
 
 	local additional="\
@@ -185,14 +222,35 @@ ${0} [COMMAND] --help\n\
 	notify "${additional[@]}"
 }
 
+COMMANDS+=('tester');
+
+function tester() {
+	notify "I got this.\n${@}";
+}
+
+function tester_help() {
+	local oneline="This one's on me.";
+	if [ "${1}" = "--one-line" ]; then
+		echo "${oneline[@]}";
+		return ;
+	fi
+	local fullline="\
+This is the long help.\n\
+Very important.\
+";
+	notify "$oneline";
+	notify "${fullline[@]}";
+}
+
 #COMMANDS+=('link');
 #COMMANDS+=('delete');
 
-#main "${@}" || exit 1;
+main "${@}" || exit 1;
 
-test="$( getSelection "YoYo" "Test" "Run_me" "Yo" "YoYo" )";
-notify "${?}\n${test}\nThis"
-notify "What?"
+#test="$( getSelection "YoYo" "Test" "Run_me" "Yo" "YoYo" )";
+#notify "Exit code ${?}\nReturn value ${test}"
+
+#notify "Exit code ${?}\nReturn value ${test}"
 
 #for cmd in {notify,ask,warn,success,fail}; do
 #	$cmd "Line 1.\nLine 2.";

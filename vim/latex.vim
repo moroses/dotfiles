@@ -14,6 +14,7 @@ autocmd FileType tex inoremap <leader><SPACE> <ESC>/<++><CR>"_c4l
 " LaTeX common things
 autocmd FileType tex inoremap ;a \begin{align}<CR><CR>\end{align}<CR><++><ESC>2ki
 autocmd FileType tex inoremap ;A \begin{align*}<CR><CR>\end{align*}<CR><++><ESC>2ki
+autocmd FileType tex inoremap ;s \begin{split}<CR><CR>\end{split}<CR><++><ESC>2ki
 autocmd FileType tex inoremap ;sec \section{}<CR><++><ESC>kf}i
 autocmd FileType tex inoremap ;ssec \subsection{}<CR><++><ESC>kf}i
 autocmd FileType tex inoremap ;l \label{}<CR><++><ESC>kf}i
@@ -29,6 +30,7 @@ autocmd FileType tex inoremap ;it \item<CR><++><ESC>k0fmA<SPACE>
 autocmd FileType tex inoremap ;enum \begin{enumerate}<CR><CR>\end{enumerate}<CR><++><ESC>kki
 autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<++><ESC>kki
 
+autocmd FileType tex inoremap <C-N> \(\) <++><ESC>F(li
 " LaTeX Greek letters and different characters
 autocmd FileType tex inoremap `al \alpha
 autocmd FileType tex inoremap `be \beta
