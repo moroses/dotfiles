@@ -24,6 +24,8 @@ noremap <DOWN> <Nop>
 noremap <LEFT> <Nop>
 noremap <RIGHT> <Nop>
 
+inoremap jk <ESC>
+
 exe "set <M-r>=\er"
 
 noremap <M-r> :so ~/.vimrc<CR>:echo "Sourced ~/.vimrc"<CR>

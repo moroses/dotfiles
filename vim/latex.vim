@@ -28,9 +28,9 @@ autocmd FileType tex inoremap ;be \begin{exampleblock}{}<CR><++><CR>\end{example
 
 autocmd FileType tex inoremap ;it \item<CR><++><ESC>k0fmA<SPACE>
 autocmd FileType tex inoremap ;enum \begin{enumerate}<CR><CR>\end{enumerate}<CR><++><ESC>kki
-autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<++><ESC>kki
+autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<CR><++><ESC>kki
 
-autocmd FileType tex inoremap <C-N> \(\) <++><ESC>F(li
+autocmd FileType tex inoremap <C-C> \(\) <++><ESC>F(li
 " LaTeX Greek letters and different characters
 autocmd FileType tex inoremap `al \alpha
 autocmd FileType tex inoremap `be \beta

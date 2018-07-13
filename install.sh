@@ -160,9 +160,6 @@ function main() {
 		shift
 	done;
 
-	### TODO:
-	### Code to verify approved command and execution
-
 	cmd="$( getSelection "${1}" "${COMMANDS[@]}" )";
 	shift;
 
@@ -173,16 +170,6 @@ function main() {
 	else
 		$cmd "${@}";
 	fi
-
-	notify "Current function: ${cmd}"
-
-	msg="\
-Current system state:\n\
-dotfiles-src=${dotfiles}\n\
-target=${target}\n\
-dummy=${dummy}\
-";
-notify "${msg}";
 
 	return 0;
 }
@@ -213,7 +200,7 @@ Commands:\n\
 
 	local additional="\
 For additional help type:\n\
-${0} [COMMAND] --help\n\
+${0} [COMMAND] --help\
 ";
 
 	notify "$oneline";
@@ -222,24 +209,36 @@ ${0} [COMMAND] --help\n\
 	notify "${additional[@]}"
 }
 
-COMMANDS+=('tester');
+COMMANDS+=('link');
 
-function tester() {
-	notify "I got this.\n${@}";
-}
-
-function tester_help() {
-	local oneline="This one's on me.";
+function link_help() {
+	local target="TARGET";
+	local dotfiles="DOTFILES";
+	local oneline='Links the various files to the respected location';
 	if [ "${1}" = "--one-line" ]; then
 		echo "${oneline[@]}";
 		return ;
 	fi
 	local fullline="\
-This is the long help.\n\
-Very important.\
+Generates links from ${dotfiles} to ${target}, according to the following rules:";
+	local fileMappings="\
+NAME.symb -> link created in ${target}/.NAME";
+	local folderMappings="\
+NAME.config -> links for the contents of 'NAME.config' created in ${target}/config/NAME/\n\
+NAME.ssh -> links for the contents of 'NAME.ssh' created in ${target}/.shh/\n\
+bin/ -> Links for the contents of bin directory will be linked to ${target}/bin/\
 ";
-	notify "$oneline";
+	notify "link: ${oneline[@]}";
 	notify "${fullline[@]}";
+	notify "File mappings:";
+	notify --ind 1 "${fileMappings[@]}" ;
+	notify "Folder mappings:";
+	notify --ind 1 "${folderMappings[@]}";
+}
+
+function link() {
+	notify "Hi! You made it!";
+	return 0;
 }
 
 #COMMANDS+=('link');
