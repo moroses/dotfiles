@@ -10,6 +10,7 @@
 function nPrint() {
 	local sep='\033[00;34m .. \033[0m';
 	local ind=0;
+	local err=0;
 	while [ "${1::2}" = '--' ]; do
 		case "${1}" in
 			'--sep')

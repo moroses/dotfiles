@@ -1,0 +1,81 @@
+#!/bin/bash
+
+if [ -f "output.sh" ]; then
+	source "./output.sh";
+else
+	echo "Missing dependencies!" >&2;
+	exit ;
+fi
+
+## This script should manage VNC connections in the sense of running/stopping/status check/reboot.
+
+# skeleton:
+
+####################################
+####### Config file scheme #########
+## VNC_NUMBER='Double digit number'#
+## RES_HOR='Horizontal resolution'##
+## RES_VER='Vertical resolution'####
+####################################
+
+# TODO: status check, verify when to force close and whether it's running at all.
+
+COMMANDS=()
+
+COMMANDS+=('main');
+
+function main() {
+	local test=;
+	main_help
+	ask "${test}";
+return;
+}
+
+function main_help() {
+	warn "${test}";
+return;
+}
+
+COMMANDS+=('status');
+
+function status() {
+return;
+}
+
+function status_help() {
+return;
+}
+
+COMMANDS+=('start');
+
+function start() {
+return;
+}
+
+function start_help() {
+return;
+}
+
+COMMANDS+=('stop');
+
+function stop() {
+return;
+}
+
+function stop_help() {
+return;
+}
+
+COMMANDS+=('restart');
+
+function restart() {
+return;
+}
+
+function restart_help() {
+return;
+}
+
+notify "${COMMANDS[@]}";
+
+main "${@}" || exit 1;
