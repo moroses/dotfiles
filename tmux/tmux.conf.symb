@@ -58,6 +58,7 @@ bind -n M-l select-pane -R
 bind -n S-Left previous-window
 bind -n S-Right next-window
 bind -n S-Down detach-client
+bind -n S-Up send-keys clear C-m
 
 set -sg escape-time 0
 

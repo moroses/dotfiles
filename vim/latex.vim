@@ -11,6 +11,7 @@ autocmd FileType tex let @l=':w:!pdflatex %'
 " ===============
 
 autocmd FileType tex inoremap <leader><SPACE> <ESC>/<++><CR>"_c4l
+autocmd FileType tex inoremap <leader>; <++>
 " LaTeX common things
 autocmd FileType tex inoremap ;a \begin{align}<CR><CR>\end{align}<CR><++><ESC>2ki
 autocmd FileType tex inoremap ;A \begin{align*}<CR><CR>\end{align*}<CR><++><ESC>2ki
