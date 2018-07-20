@@ -2,7 +2,7 @@
 
 # TODO: Add directory change
 
-source "./output.sh";
+source "./bash/output.sh";
 
 # getSelection()
 # 1 - value to search
