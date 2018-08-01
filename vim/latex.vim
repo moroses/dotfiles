@@ -4,8 +4,10 @@
 
 " LaTeX compile
 " =============
-autocmd FileType tex imap <C-L> <ESC> :w:!pdflatex % i
+autocmd FileType tex inoremap <C-L> <ESC> @='@l'<CR> i
 autocmd FileType tex let @l=':w:!pdflatex %'
+autocmd FileType tex let @k=':w:!pdflatex -interaction=nonstopmode %'
+autocmd FileType tex inoremap  <ESC> @='@k'<CR> i
 
 " LaTeX shortcuts
 " ===============
@@ -32,6 +34,7 @@ autocmd FileType tex inoremap ;enum \begin{enumerate}<CR><CR>\end{enumerate}<CR>
 autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<CR><++><ESC>kki
 
 autocmd FileType tex inoremap <C-C> \(\) <++><ESC>F(li
+autocmd FileType tex inoremap  $$ <++><ESC>F$i
 " LaTeX Greek letters and different characters
 autocmd FileType tex inoremap `al \alpha
 autocmd FileType tex inoremap `be \beta
