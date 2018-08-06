@@ -9,6 +9,10 @@ autocmd FileType tex let @l=':w:!pdflatex %'
 autocmd FileType tex let @k=':w:!pdflatex -interaction=nonstopmode %'
 autocmd FileType tex inoremap  <ESC> @='@k'<CR> i
 
+" LaTeX spell check fix
+" =====================
+autocmd FileType tex syntax spell toplevel
+
 " LaTeX shortcuts
 " ===============
 
