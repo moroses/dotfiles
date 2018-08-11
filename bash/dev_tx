@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo -e "No session name given!";
+	exit 1;
+fi
+
+if [ "$(tmux list-sessions -F \"#{session_name}\" 2>/dev/null | grep "${1}")" = "" ]; then
+
+	tmux new-session -d -s "${1}" -n 'local' 'ranger'
+
+	tmux split-window -v
+	tmux select-pane -t:"${1}.1"
+	tmux resize-pane -Z
+	tmux new-window -n 'equi'
+	tmux new-window -n 'perso'
+	tmux select-window -t 'local'
+
+fi
+tmux attach -t "${1}"
