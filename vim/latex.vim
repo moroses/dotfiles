@@ -4,10 +4,16 @@
 
 " LaTeX compile
 " =============
-autocmd FileType tex inoremap <C-L> <ESC> @='@l'<CR> i
+" Ctrl-L - Compile LaTeX
+autocmd FileType tex inoremap <C-L> <C-O>@='@l'<CR>
 autocmd FileType tex let @l=':w:!pdflatex %'
 autocmd FileType tex let @k=':w:!pdflatex -interaction=nonstopmode %'
-autocmd FileType tex inoremap  <ESC> @='@k'<CR> i
+" Ctrl-Shift-L - Interaction less compile
+autocmd FileType tex inoremap  <C-O>@='@k'<CR>
+
+autocmd FileType tex set linebreak
+autocmd FileType tex inoremap <F8> <C-O>:set wrap!<CR>
+
 
 " LaTeX spell check fix
 " =====================
@@ -37,7 +43,9 @@ autocmd FileType tex inoremap ;it \item<CR><++><ESC>k0fmA<SPACE>
 autocmd FileType tex inoremap ;enum \begin{enumerate}<CR><CR>\end{enumerate}<CR><++><ESC>kki
 autocmd FileType tex inoremap ;lst \begin{itemize}<CR><CR>\end{itemize}<CR><++><ESC>kki
 
+" Ctrl-C - Inserts inline math code (new style)
 autocmd FileType tex inoremap <C-C> \(\) <++><ESC>F(li
+" Ctrl-Shift-C - Inserts inline math code (old style)
 autocmd FileType tex inoremap  $$ <++><ESC>F$i
 " LaTeX Greek letters and different characters
 autocmd FileType tex inoremap `al \alpha

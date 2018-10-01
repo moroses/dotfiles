@@ -12,8 +12,8 @@ if [ "$(tmux list-sessions -F \"#{session_name}\" 2>/dev/null | grep "${1}")" = 
 	tmux split-window -v
 	tmux select-pane -t:"${1}.1"
 	tmux resize-pane -Z
-	tmux new-window -n 'equi'
-	tmux new-window -n 'perso'
+	tmux new-window -n 'remote'
+	tmux new-window -n 'git'
 	tmux select-window -t 'local'
 
 fi
