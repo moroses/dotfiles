@@ -10,6 +10,10 @@ autocmd FileType tex let @l=':w:!pdflatex %'
 autocmd FileType tex let @k=':w:!pdflatex -interaction=nonstopmode %'
 " Ctrl-Shift-L - Interaction less compile
 autocmd FileType tex inoremap  <C-O>@='@k'<CR>
+" Compile with shell escape:
+autocmd FileType tex let @j=':w:!pdflatex % -shell-escape'
+" Compile with shell escape and no interactions
+autocmd FileType tex let @h=':w:!pdflatex % -shell-escape -interaction=nonstopmode'
 
 autocmd FileType tex set linebreak
 autocmd FileType tex inoremap <F8> <C-O>:set wrap!<CR>
@@ -87,6 +91,7 @@ autocmd FileType tex inoremap `Nu \Nu
 autocmd FileType tex inoremap `Ome \Omega
 autocmd FileType tex inoremap `Omi \Omicron
 autocmd FileType tex inoremap `Ph \Phi
+autocmd FileType tex inoremap `Pi \Pi
 autocmd FileType tex inoremap `Ps \Psi
 autocmd FileType tex inoremap `Rh \Rho
 autocmd FileType tex inoremap `Si \Sigma
