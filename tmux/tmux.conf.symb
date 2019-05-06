@@ -60,6 +60,10 @@ bind -n S-Right next-window
 bind -n S-Down detach-client
 bind -n S-Up send-keys clear C-m
 
+bind Left previous-window
+bind Right next-window
+bind Down detach-window
+
 set -sg escape-time 0
 
 # Reload conf
@@ -101,5 +105,6 @@ set -g window-status-bg 'colour235'
 set -g status-left '#[fg=colour232,bg=colour192] #S #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>'
 set -g status-right '#[fg=colour192,bg=colour235]<#[fg=colour192,bg=colour238] %Y-%m-%d  %H:%M #[fg=color192,bg=colour238]<#[fg=colour=232,bg=colour=192] #h #{?client_prefix,#[reverse]BIND#[noreverse],}'
 set -g window-status-format '#[fg=colour243,bg=colour235] (#I) #W '
-set -g window-status-current-format '#[fg=colour192,bg=colour235] (#I) #W '
+set -g window-status-current-format '#[fg=colour193,bg=colour235] (#I) #W '
 
+ # tmux in a tmux mode
