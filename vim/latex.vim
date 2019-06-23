@@ -14,6 +14,11 @@ autocmd FileType tex inoremap  <C-O>@='@k'<CR>
 autocmd FileType tex let @j=':w:!pdflatex % -shell-escape'
 " Compile with shell escape and no interactions
 autocmd FileType tex let @h=':w:!pdflatex % -shell-escape -interaction=nonstopmode'
+" bibtex Compile
+autocmd FileType tex let @b=':w:!bibtex %:r'
+" biber compile
+autocmd FileType tex let @v=':w:!biber %:r'
+
 
 autocmd FileType tex set linebreak
 autocmd FileType tex inoremap <F8> <C-O>:set wrap!<CR>
