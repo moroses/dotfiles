@@ -85,6 +85,7 @@ set smartcase			        " case sensitive if uppercase
 set incsearch			        " move the cursor to first result
 set showmatch 	" Show matching brackets.
 noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap [1;2S :noh<CR>
 
 " Toggle spell check
 nmap <F7> :set spell! spell?<CR>

@@ -7,7 +7,7 @@ fi
 
 if [ "$(tmux list-sessions -F \"#{session_name}\" 2>/dev/null | grep "${1}")" = "" ]; then
 
-	tmux new-session -d -s "${1}" -n 'local' 'ranger'
+	tmux new-session -d -s "${1}" -n 'local'
 
 	tmux split-window -v
 	tmux select-pane -t:"${1}.1"
