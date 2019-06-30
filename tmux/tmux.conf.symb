@@ -104,6 +104,19 @@ set -g window-status-bg 'colour235'
 set -g status-left '#[fg=colour232,bg=colour192] #S #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>'
 set -g status-right '#[fg=colour192,bg=colour235]<#[fg=colour192,bg=colour238] %Y-%m-%d  %H:%M #[fg=color192,bg=colour238]<#[fg=colour=232,bg=colour=192] #h #{?client_prefix,#[reverse]BIND#[noreverse],}'
 set -g window-status-format '#[fg=colour243,bg=colour235] (#I) #W '
-set -g window-status-current-format '#[fg=colour193,bg=colour235] (#I) #W '
+set -g window-status-current-format '#[fg=colour194,bg=colour235] (#I) #W '
 
  # tmux in a tmux mode
+
+bind -T root F12 \
+	set status-left '#[fg=colour232,bg=colour192] #S-off #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>' \;\
+	set prefix None \;\
+	set key-table off \;\
+	refresh-client -S \;\
+
+bind -T off F12 \
+	set -u status-left \;\
+	set -u window-status-bg \;\
+	set -u prefix \;\
+	set -u key-table \;\
+	refresh-client -S
