@@ -107,6 +107,7 @@ set -g window-status-format '#[fg=colour243,bg=colour235] (#I) #W '
 set -g window-status-current-format '#[fg=colour194,bg=colour235] (#I) #W '
 
  # tmux in a tmux mode
+# Credit where credit is due - https://github.com/samoshkin/tmux-config/blob/master/tmux/tmux.conf
 
 bind -T root F12 \
 	set status-left '#[fg=colour232,bg=colour192] #S-off #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>' \;\
