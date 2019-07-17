@@ -77,6 +77,10 @@ bind X confirm-before -p "kill-session? (y/n)" kill-session
 
 bind M-s set synchronize-pane
 
+# Quick zoom pane
+
+bind -n M-z resize-pane -Z
+
 # Initial theme
 set -g status-interval 60
 setw -g mode-bg yellow
@@ -112,6 +116,7 @@ set -g window-status-current-format '#[fg=colour194,bg=colour235] (#I) #W '
 bind -T root F12 \
 	set status-left '#[fg=colour232,bg=colour192] #S-off #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>' \;\
 	set prefix None \;\
+	set prefix2 None \;\
 	set key-table off \;\
 	refresh-client -S \;\
 
@@ -119,5 +124,6 @@ bind -T off F12 \
 	set -u status-left \;\
 	set -u window-status-bg \;\
 	set -u prefix \;\
+	set -u prefix2 \;\
 	set -u key-table \;\
 	refresh-client -S

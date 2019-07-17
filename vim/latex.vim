@@ -22,6 +22,7 @@ autocmd FileType tex let @v=':w:!biber %:r'
 
 autocmd FileType tex set linebreak
 autocmd FileType tex inoremap <F8> <C-O>:set wrap!<CR>
+autocmd FileType tex set iskeyword+=:
 
 
 " LaTeX spell check fix
