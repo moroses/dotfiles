@@ -20,9 +20,10 @@ autocmd FileType tex let @b=':w:!bibtex %:r'
 autocmd FileType tex let @v=':w:!biber %:r'
 
 
-autocmd FileType tex set linebreak
-autocmd FileType tex inoremap <F8> <C-O>:set wrap!<CR>
-autocmd FileType tex set iskeyword+=:
+autocmd FileType tex setlocal linebreak
+autocmd FileType tex inoremap <F8> <C-O>:setlocal wrap!<CR>
+autocmd FileType tex setlocal iskeyword+=:
+autocmd FileType tex setlocal iskeyword+=-
 
 
 " LaTeX spell check fix
