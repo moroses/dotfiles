@@ -105,6 +105,9 @@ set -g window-status-activity-attr 'none'
 set -g window-status-activity-fg 'colour252'
 set -g window-status-bg 'colour235'
 
+set -g pane-active-border-style "bg=default,fg=magenta"
+set -g pane-border-style fg=green
+
 set -g status-left '#[fg=colour232,bg=colour192] #S #{?window_zoomed_flag,Z,}#[fg=colour192,bg=colour235]>'
 set -g status-right '#[fg=colour192,bg=colour235]<#[fg=colour192,bg=colour238] %Y-%m-%d  %H:%M #[fg=color192,bg=colour238]<#[fg=colour=232,bg=colour=192] #h #{?client_prefix,#[reverse]BIND#[noreverse],}'
 set -g window-status-format '#[fg=colour243,bg=colour235] (#I) #W '
