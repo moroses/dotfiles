@@ -207,11 +207,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'chuling/vim-equinusocio-material'
 Plug 'luochen1990/rainbow'
+Plug 'zefei/simple-dark'
 
 cal plug#end()
 
 let g:rainbow_active = 1
 
+if exists('+termguicolor')
 " This is only necessary if you use "set termguicolors".
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -220,10 +222,13 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 set t_Co=256
 
-set termguicolors
+"set termguicolors
 let g:equinusocio_material_darker = 1
 
 colorscheme equinusocio_material
+else
+	colorscheme simple-dark
+endif
 
 "let g:lightline = {
 "	\ 'colorscheme': 'equinusocio_material',
