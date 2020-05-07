@@ -125,7 +125,6 @@ bind -T root F12 \
 
 bind -T off F12 \
 	set -u status-left \;\
-	set -u window-status-bg \;\
 	set -u prefix \;\
 	set -u prefix2 \;\
 	set -u key-table \;\

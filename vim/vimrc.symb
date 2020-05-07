@@ -35,7 +35,7 @@ let g:netrw_liststyle=3       " Explore set to tree view
 let g:netrw_usetab=1
 set completeopt=longest,menuone " doesn't select first item; insert longest common text; always show menu
 set sidescroll=1 " The minimal number of columns to scroll horizontally.
-set t_Co=256 " 256 colors
+"set t_Co=256 " 256 colors
 " Spell language
 set spelllang=en_us
 
@@ -95,12 +95,15 @@ nmap <F7> :set spell! spell?<CR>
 set nobackup
 set noswapfile
 
-" Ensure syntax highlighting & filetype detecton are turned on
-syntax on
-filetype plugin indent on
 
 " Mappings
 " ========
+
+set cursorline
+set colorcolumn=81
+set tw=80
+set so=999
+nnoremap <F8> :setlocal wrap! wrap?<CR>
 
 " LaTeX file load
 " ===============
@@ -164,28 +167,28 @@ cnoreabbrev Tabe tabe
 
 " Colors
 " =======
-colorscheme desert    " use this color scheme
-set background=dark   " adapt colors for background
+"colorscheme desert    " use this color scheme
+"set background=dark   " adapt colors for background
 
-hi clear SpellBad
-hi SpellBad cterm=undercurl ctermfg=red
+"hi clear SpellBad
+"hi SpellBad cterm=undercurl ctermfg=red
 
 " Change diff colors
-hi DiffAdd    cterm=bold ctermfg=black ctermbg=10 gui=none guifg=black guibg=green
-hi DiffDelete cterm=bold ctermfg=black ctermbg=9 gui=none guifg=black guibg=Red
-hi DiffChange cterm=bold ctermfg=black ctermbg=17 gui=none guifg=bg guibg=Red
-hi DiffText   cterm=bold ctermfg=black ctermbg=88 gui=none guifg=bg guibg=Red
+"hi DiffAdd    cterm=bold ctermfg=black ctermbg=10 gui=none guifg=black guibg=green
+"hi DiffDelete cterm=bold ctermfg=black ctermbg=9 gui=none guifg=black guibg=Red
+"hi DiffChange cterm=bold ctermfg=black ctermbg=17 gui=none guifg=bg guibg=Red
+"hi DiffText   cterm=bold ctermfg=black ctermbg=88 gui=none guifg=bg guibg=Red
 
 " Sets popup and selection colors
-hi Pmenu ctermbg=246 ctermfg=232
-hi PmenuSel ctermbg=237 ctermfg=250
+"hi Pmenu ctermbg=246 ctermfg=232
+"hi PmenuSel ctermbg=237 ctermfg=250
 
 " Status line
 " ===========
 
 set laststatus=2
 
-hi StausLine ctermbg=76 ctermfg=256
+"hi StausLine ctermbg=76 ctermfg=256
 
 set statusline=
 
@@ -196,3 +199,35 @@ set statusline+=%=
 set statusline+=[%{strlen(&ft)?&ft:'none'}]
 set statusline+=\ %{&fileencoding}
 set statusline+=\ %-14.(%l,%c%V%)\ %<%P
+
+
+" Plugin manger
+"
+call plug#begin('~/.vim/plugged')
+
+Plug 'chuling/vim-equinusocio-material'
+Plug 'luochen1990/rainbow'
+
+cal plug#end()
+
+let g:rainbow_active = 1
+
+" This is only necessary if you use "set termguicolors".
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"
+" " fixes glitch? in colors when using vim with tmux
+set background=dark
+set t_Co=256
+
+set termguicolors
+let g:equinusocio_material_darker = 1
+
+colorscheme equinusocio_material
+
+"let g:lightline = {
+"	\ 'colorscheme': 'equinusocio_material',
+"	\ }
+" Ensure syntax highlighting & file type detection are turned on
+syntax on
+filetype plugin indent on
