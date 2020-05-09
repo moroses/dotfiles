@@ -124,6 +124,9 @@ nmap [w :cprevious<cr>
 
 " toggle last buffer
 nmap <LEADER>b :b# <CR>
+nmap <LEADER>h :setlocal rightleft! rightleft?<CR>
+imap <LEADER>h <C-O>:setlocal rightleft! rightleft?<CR>
+imap <LEADER>י <C-O>:setlocal rightleft! rightleft?<CR>
 
 " Navigate splits with CTRL+hjkl
 nnoremap <C-h> <C-w>h
