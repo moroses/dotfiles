@@ -236,11 +236,11 @@ if exists('+termguicolors')
 	let g:equinusocio_material_darker = 1
 
 	colorscheme equinusocio_material
-	let g:lightline = { 'colorscheme': 'equinusocio_material', }               "vim-lightline
+	"let g:lightline = { 'colorscheme': 'equinusocio_material', }               "vim-lightline
 
 else
 	colorscheme simple-dark
-	let g:lightline = { 'colorscheme': 'simple-dark', }               "vim-lightline
+	"let g:lightline = { 'colorscheme': 'simple-dark', }               "vim-lightline
 endif
 
 let g:python_highlight_all = 1
