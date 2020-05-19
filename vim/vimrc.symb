@@ -108,10 +108,10 @@ nnoremap <F8> :setlocal wrap! wrap?<CR>
 " LaTeX file load
 " ===============
 
-so ~/dotfiles/vim/latex.vim
+" so ~/dotfiles/vim/latex.vim
 
 " Tab in normal mode toggles file browsing
-nmap <TAB> :40Lexplore <CR>
+"nmap <TAB> :40Lexplore <CR>
 " When autocomplete popup is open, enter just inserts selected item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " navigate quickfix locations
@@ -125,6 +125,7 @@ nmap [w :cprevious<cr>
 " toggle last buffer
 nmap <LEADER>b :b# <CR>
 nmap <LEADER>h :setlocal rightleft! rightleft?<CR>
+nmap <LEADER>י <C-O>:setlocal rightleft! rightleft?<CR>
 imap <LEADER>h <C-O>:setlocal rightleft! rightleft?<CR>
 imap <LEADER>י <C-O>:setlocal rightleft! rightleft?<CR>
 
@@ -189,19 +190,19 @@ cnoreabbrev Tabe tabe
 " Status line
 " ===========
 
-set laststatus=2
-
-"hi StausLine ctermbg=76 ctermfg=256
-
-set statusline=
-
-set statusline+=%#statusline#%-3.3n
-set statusline+=\ [%f]
-set statusline+=\ %h%m%r%w
-set statusline+=%=
-set statusline+=[%{strlen(&ft)?&ft:'none'}]
-set statusline+=\ %{&fileencoding}
-set statusline+=\ %-14.(%l,%c%V%)\ %<%P
+"set laststatus=2
+"
+""hi StausLine ctermbg=76 ctermfg=256
+"
+"set statusline=
+"
+"set statusline+=%#statusline#%-3.3n
+"set statusline+=\ [%f]
+"set statusline+=\ %h%m%r%w
+"set statusline+=%=
+"set statusline+=[%{strlen(&ft)?&ft:'none'}]
+"set statusline+=\ %{&fileencoding}
+"set statusline+=\ %-14.(%l,%c%V%)\ %<%P
 
 
 " Plugin manger
@@ -211,8 +212,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'chuling/vim-equinusocio-material'
 Plug 'luochen1990/rainbow'
 Plug 'zefei/simple-dark'
+Plug 'sheerun/vim-polyglot'
+Plug 'itchyny/lightline.vim'
 
 cal plug#end()
+
+"let g:lightline = { 'colorscheme': 'solarized', }               "vim-lightline
+set laststatus=2                                                "vim-lightline
+set noshowmode                                                  "vim-lightline
 
 let g:rainbow_active = 1
 
@@ -229,10 +236,16 @@ if exists('+termguicolors')
 	let g:equinusocio_material_darker = 1
 
 	colorscheme equinusocio_material
+	let g:lightline = { 'colorscheme': 'equinusocio_material', }               "vim-lightline
 
 else
 	colorscheme simple-dark
+	let g:lightline = { 'colorscheme': 'simple-dark', }               "vim-lightline
 endif
+
+let g:python_highlight_all = 1
+
+nmap <Tab> <C-Tab>
 
 "let g:lightline = {
 "	\ 'colorscheme': 'equinusocio_material',
