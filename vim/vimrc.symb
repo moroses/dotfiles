@@ -101,7 +101,7 @@ set noswapfile
 
 set cursorline
 set colorcolumn=81
-set tw=80
+"set tw=80
 set so=999
 nnoremap <F8> :setlocal wrap! wrap?<CR>
 
@@ -135,6 +135,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-w>m <C-w>_<C-w><Bar>
+nnoremap <C-w><CR> <C-w>_<C-w><Bar>
 
 " Move Lines [e and ]e (ALL MODES)
 " up
@@ -204,6 +205,7 @@ cnoreabbrev Tabe tabe
 "set statusline+=\ %{&fileencoding}
 "set statusline+=\ %-14.(%l,%c%V%)\ %<%P
 
+let g:rainbow_active = 1
 
 " Plugin manger
 "
@@ -215,14 +217,23 @@ Plug 'zefei/simple-dark'
 Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
 Plug 'itchyny/lightline.vim'
+Plug 'davidosomething/vim-colors-meh'
+Plug 'aquach/vim-mediawiki-editor'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-cal plug#end()
+call plug#end()
+
+nnoremap <silent> <LEADER>r :RainbowToggle
+
+" mediawiki editor options
+"
+let g:mediawiki_editor_url = "en.wikipedia.org"
+let g:mediawiki_editor_path = "/w/"
+let g:mediawiki_editor_username = "Moroses"
 
 "let g:lightline = { 'colorscheme': 'solarized', }               "vim-lightline
 set laststatus=2                                                "vim-lightline
 set noshowmode                                                  "vim-lightline
-
-let g:rainbow_active = 1
 
 if exists('+termguicolors')
 	" This is only necessary if you use "set termguicolors".
@@ -237,6 +248,7 @@ if exists('+termguicolors')
 	let g:equinusocio_material_darker = 1
 
 	colorscheme equinusocio_material
+	colorscheme meh
 	"let g:lightline = { 'colorscheme': 'equinusocio_material', }               "vim-lightline
 
 else
@@ -244,9 +256,25 @@ else
 	"let g:lightline = { 'colorscheme': 'simple-dark', }               "vim-lightline
 endif
 
+
 let g:python_highlight_all = 1
 
 nmap <Tab> <C-Tab>
+
+" Testing autocomplete
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 "let g:lightline = {
 "	\ 'colorscheme': 'equinusocio_material',
