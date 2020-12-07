@@ -206,11 +206,14 @@ cnoreabbrev Tabe tabe
 "set statusline+=\ %-14.(%l,%c%V%)\ %<%P
 
 let g:rainbow_active = 1
+"let g:doge_parsers = ['bash', 'python']
+let g:doge_doc_standard_python = 'numpy'
 
 " Plugin manger
 "
 call plug#begin('~/.vim/plugged')
 
+Plug 'preservim/tagbar'
 Plug 'chuling/vim-equinusocio-material'
 Plug 'luochen1990/rainbow'
 Plug 'zefei/simple-dark'
@@ -220,8 +223,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'davidosomething/vim-colors-meh'
 Plug 'aquach/vim-mediawiki-editor'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kkoomen/vim-doge', {'do': { -> doge#install() } }
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'arthurxavierx/vim-unicoder'
+Plug 'cjrh/vim-conda'
 
 call plug#end()
+
+nnoremap <silent> <LEADER>o :TagbarToggle
 
 nnoremap <silent> <LEADER>r :RainbowToggle
 
@@ -230,6 +239,10 @@ nnoremap <silent> <LEADER>r :RainbowToggle
 let g:mediawiki_editor_url = "en.wikipedia.org"
 let g:mediawiki_editor_path = "/w/"
 let g:mediawiki_editor_username = "Moroses"
+
+" vimtex options
+"
+let g:tex_flavor = 'latex'
 
 "let g:lightline = { 'colorscheme': 'solarized', }               "vim-lightline
 set laststatus=2                                                "vim-lightline
@@ -247,8 +260,9 @@ if exists('+termguicolors')
 	set termguicolors
 	let g:equinusocio_material_darker = 1
 
-	colorscheme equinusocio_material
-	colorscheme meh
+  colorscheme humanoid
+	"colorscheme equinusocio_material
+	"colorscheme meh
 	"let g:lightline = { 'colorscheme': 'equinusocio_material', }               "vim-lightline
 
 else
