@@ -272,6 +272,8 @@ endif
 
 
 let g:python_highlight_all = 1
+let g:coc_disable_startup_warning = 1
+
 
 nmap <Tab> <C-Tab>
 
@@ -296,3 +298,6 @@ let g:coc_snippet_next = '<tab>'
 " Ensure syntax highlighting & file type detection are turned on
 syntax on
 filetype plugin indent on
+
+set list
+set listchars=tab:❘⠀,trail:·,extends:»,precedes:«,nbsp:×
