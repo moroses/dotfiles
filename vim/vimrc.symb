@@ -57,7 +57,7 @@ autocmd Filetype css set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype javascript set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType html setl tabstop=4 shiftwidth=4 softtabstop=4 filetype=html.javascript
 
-"set expandtab " converts tabs to spaces
+set expandtab " converts tabs to spaces
 set nowrap " don't use word wrap
 set textwidth=0 " if word wrap is enabled, this is the max character length
 set indentkeys-=<:> " Don't indent after typing a colon (annoying!!!)
@@ -114,20 +114,24 @@ nnoremap <F8> :setlocal wrap! wrap?<CR>
 "nmap <TAB> :40Lexplore <CR>
 " When autocomplete popup is open, enter just inserts selected item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" navigate quickfix locations
+" navigate location list
 nmap ]q :lnext<cr>
 nmap [q :lprevious<cr>
 
-" navigate location list
+" navigate quickfix locations
 nmap ]w :cnext<cr>
 nmap [w :cprevious<cr>
 
+" navigate buffers
+nmap ]b :bnext<cr>
+nmap [b :bprevious<cr>
+
 " toggle last buffer
-nmap <LEADER>b :b# <CR>
-nmap <LEADER>h :setlocal rightleft! rightleft?<CR>
-nmap <LEADER>י <C-O>:setlocal rightleft! rightleft?<CR>
-imap <LEADER>h <C-O>:setlocal rightleft! rightleft?<CR>
-imap <LEADER>י <C-O>:setlocal rightleft! rightleft?<CR>
+"nmap <LEADER>b :b# <CR>
+nmap <LEADER>lh :setlocal rightleft! rightleft?<CR>
+nmap <LEADER>ךי <C-O>:setlocal rightleft! rightleft?<CR>
+imap <LEADER>lh <C-O>:setlocal rightleft! rightleft?<CR>
+imap <LEADER>ךי <C-O>:setlocal rightleft! rightleft?<CR>
 
 " Navigate splits with CTRL+hjkl
 nnoremap <C-h> <C-w>h
@@ -211,6 +215,15 @@ let g:doge_doc_standard_python = 'numpy'
 
 " Plugin manger
 "
+"
+"
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/tagbar'
@@ -218,21 +231,36 @@ Plug 'chuling/vim-equinusocio-material'
 Plug 'luochen1990/rainbow'
 Plug 'zefei/simple-dark'
 Plug 'lervag/vimtex'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'itchyny/lightline.vim'
 Plug 'davidosomething/vim-colors-meh'
 Plug 'aquach/vim-mediawiki-editor'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'kkoomen/vim-doge', {'do': { -> doge#install() } }
+"Plug 'fannheyward/coc-julia'
+"Plug 'kkoomen/vim-doge', {'do': { -> doge#install() } }
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'arthurxavierx/vim-unicoder'
 Plug 'cjrh/vim-conda'
+Plug 'reedes/vim-pencil'
+Plug 'el-iot/buffer-tree'
+Plug 'ap/vim-buftabline'
+Plug 'skanehira/preview-markdown.vim'
 
 call plug#end()
 
 nnoremap <silent> <LEADER>o :TagbarToggle
 
 nnoremap <silent> <LEADER>r :RainbowToggle
+
+nnoremap <silent> <LEADER>b :BufferTree
+
+" md options
+let g:preview_markdown_vertical = 1
+let g:preview_markdown_auto_update = 1
+
+" buffer-tree options
+"
+let g:buffertree_compress = 1
 
 " mediawiki editor options
 "
